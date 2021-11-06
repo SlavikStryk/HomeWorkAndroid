@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class PlayerMoving1 : MonoBehaviour
 {
+    public bool jumpInput;
+    public float horizontalInput;
+
     private Rigidbody2D rb;
     private Animator anim;
     private SpriteRenderer sprite;
@@ -28,9 +31,11 @@ public class PlayerMoving1 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        dirX = Input.GetAxisRaw("Horizontal");
+        //dirX = Input.GetAxisRaw("Horizontal");
+        dirX = horizontalInput;
         rb.velocity = new Vector2(dirX * speed, rb.velocity.y);
-        if(Input.GetButton("Jump") && IsGrounded())
+        //if(Input.GetButton("Jump") && IsGrounded())
+        if(jumpInput && IsGrounded())
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
         }
